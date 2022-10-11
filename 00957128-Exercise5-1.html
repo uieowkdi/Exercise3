@@ -2,24 +2,75 @@
 <html>
     <head>
         <meta charset = "utf-8">
+        <title>DOM</title>
         <script>
-            
+            function operation(num1,num2,fq){
+                if(fq == 1){
+                    res = num1 + num2;
+                    document.getElementById("op").innerHTML = "+"
+                }
+                else if(fq == 2){
+                    res = num1 - num2;
+                    document.getElementById("op").innerHTML = "-"
+                }
+                else if(fq == 3){
+                    res = num1 * num2;
+                    document.getElementById("op").innerHTML = "*"
+                }
+                else{
+                    res = num1 / num2;
+                    res = res.toFixed(2);
+                    document.getElementById("op").innerHTML = "/"
+                }
+                return res;
+            }
+            function main(){
+                let res = 0;
+                let fq = parseInt(window.prompt("請輸入算數運算子：1 代表加(+)、2 代表減(-)、3 代表乘(*)、4 代表除(/)"));
+                if(fq != 1 && fq != 2 && fq != 3 && fq != 4){
+                    window.alert("輸入有誤！選項自動設為 1。");
+                    fq = 1;
+                    console.log(fq);
+                } 
+                let fnum = parseInt(window.prompt("請輸入第一個數字!"));
+                if(isNaN(fnum)){
+                    window.alert("輸入有誤！數值自動設定為1。");
+                    fnum = 1;
+                    console.log(fnum);
+                }
+                let snum = parseInt(window.prompt("請輸入第二個數字!"));
+                if(isNaN(snum)){
+                    window.alert("輸入有誤！數值自動設定為 1。");
+                    snum = 1;
+                    console.log(snum);
+                }
+                res = operation(fnum,snum,fq);
+                document.getElementById("num1").innerHTML = fnum;
+                document.getElementById("num2").innerHTML = snum;
+                document.getElementById("result").innerHTML = res;
+            }
+            window.addEventListener("load",main,false);
         </script>
         <style type="text/CSS">
+             @import url(https://fonts.googleapis.com/earlyaccess/cwtexyen.css);
             h1 {
                 font-size: 50px;			
+                font-family: cwTeXYen;
             }
     
             div {            
                 font-family: Consolas;
                 font-size: 80px;			
-                margin: 5px;			
+                margin: 5px;	
+                padding: 5px;
+                float: left;		
             }
     
             div.number {
                 color: dodgerblue;
                 border: 1px solid gray;			
                 min-width: 100px;
+                text-align: center;
             }
     
         </style>
@@ -27,9 +78,9 @@
     <body>
         <h1>四則運算結果:</h1>
         <div class="number" id="num1">Number1</div>
-        <div id="op">?</div>
+        <div id="op"></div>
         <div class="number" id="num2">Number2</div>
         <div>=</div>
         <div class="number" id="result">Result</div>  
-        </body>
+    </body>
 </html>
